@@ -1,0 +1,7 @@
+{
+  "name": "I travels FASTag",
+  "description": "A comprehensive FASTag management and recharge platform for Indian travelers, featuring secure payments, multi-bank support, and AI-powered assistance.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
