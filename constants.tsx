@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Bank, VehicleType, Transaction } from './types';
 
 export const INDIAN_BANKS: Bank[] = [
@@ -9,6 +8,13 @@ export const INDIAN_BANKS: Bank[] = [
   { id: 'sbi', name: 'State Bank of India' },
   { id: 'kotak', name: 'Kotak Mahindra' },
   { id: 'idfc', name: 'IDFC FIRST Bank' },
+  { id: 'pnb', name: 'Punjab National Bank' },
+  { id: 'bob', name: 'Bank of Baroda' },
+  { id: 'union', name: 'Union Bank of India' },
+  { id: 'canara', name: 'Canara Bank' },
+  { id: 'indusind', name: 'IndusInd Bank' },
+  { id: 'yes', name: 'YES Bank' },
+  { id: 'paytm', name: 'Paytm Payments Bank' },
 ];
 
 export const VEHICLE_TYPES = Object.values(VehicleType);

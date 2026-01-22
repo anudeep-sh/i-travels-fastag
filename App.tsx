@@ -1,152 +1,120 @@
 
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+import React, { useState } from 'react';
+import Navbar from './Navbar';
 import Dashboard from './components/Dashboard';
 import RechargeForm from './components/RechargeForm';
-import LegalContent from './components/LegalContent';
+import LegalContent from './LegalContent';
 import FeesContent from './components/FeesContent';
 import DocumentationContent from './components/DocumentationContent';
+import FAQContent from './components/FAQContent';
 import AIChatWidget from './components/AIChatWidget';
 import VehicleModal from './components/VehicleModal';
 import { User, Vehicle, VehicleType } from './types';
-import { ShieldCheck, ArrowRight, Smartphone, Zap, CheckCircle, Car, MapPin, AlertCircle, Info, UserPlus, Navigation, Phone } from 'lucide-react';
+import { ShieldCheck, Car, Phone, Zap, Clock, Globe, CheckCircle, Mail, MapPin } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
-  const [user, setUser] = useState<User | null>(null);
-  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  const [isSignup, setIsSignup] = useState(false);
+  const [user, setUser] = useState<User>({
+    id: 'u-777',
+    name: 'Customer',
+    email: 'support@thequickpayme.com',
+    walletBalance: 3000.00
+  });
+  
+  const [vehicles, setVehicles] = useState<Vehicle[]>([
+    { id: 'v1', number: 'HR26DQ1234', type: VehicleType.CAR, bank: 'Axis Bank' },
+    { id: 'v2', number: 'DL3CAY5678', type: VehicleType.CAR, bank: 'HDFC Bank' }
+  ]);
+
   const [showVehicleModal, setShowVehicleModal] = useState(false);
 
-  const handleLogin = () => {
-    const mockUser: User = {
-      id: 'sk-777',
-      name: 'Sri Krishna',
-      email: 'srikrishna@itravels.com',
-      walletBalance: 3000.00
-    };
-    const mockVehicles: Vehicle[] = [
-      { id: 'v1', number: 'HR26DQ1234', type: VehicleType.CAR, bank: 'Axis Bank' },
-      { id: 'v2', number: 'DL3CAY5678', type: VehicleType.CAR, bank: 'HDFC Bank' }
-    ];
-    setUser(mockUser);
-    setVehicles(mockVehicles);
-    setShowAuthModal(false);
-    setCurrentPage('dashboard');
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    setVehicles([]);
-    setCurrentPage('home');
-  };
-
   const handleRechargeSuccess = (amount: number) => {
-    if (user) {
-      setUser({ ...user, walletBalance: user.walletBalance + amount });
-    }
+    setUser(prev => ({ ...prev, walletBalance: prev.walletBalance + amount }));
   };
 
   const handleAddVehicle = (newVehicle: Vehicle) => {
-    setVehicles([...vehicles, newVehicle]);
+    setVehicles(prev => [...prev, newVehicle]);
     setShowVehicleModal(false);
   };
 
   const renderHome = () => (
-    <div className="space-y-20 pb-20">
-      {/* Hero Section - Removed Background Image */}
-      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden bg-slate-950">
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-950 via-slate-950 to-indigo-950 opacity-50"></div>
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center bg-white/10 backdrop-blur-xl border border-white/20 px-6 py-2.5 rounded-full text-white text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-xl">
-            <ShieldCheck size={16} className="mr-2 text-indigo-400" /> Registered as I travels Private limited
+    <div className="space-y-16 pb-20">
+      <section className="relative h-[85vh] flex items-center justify-center bg-slate-950 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#064e3b] to-[#111827] opacity-90"></div>
+        <div className="relative z-10 text-center max-w-5xl px-4 animate-in fade-in zoom-in duration-1000">
+          <div className="inline-flex items-center bg-white/5 border border-white/10 px-6 py-2 rounded-full text-white/70 text-[10px] uppercase font-black tracking-widest mb-8">
+            <ShieldCheck size={14} className="mr-2 text-emerald-400" /> Authorized NHAI Service Portal • 2026
           </div>
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tighter drop-shadow-lg">
-            Elevated Highway <br /><span className="text-indigo-500 italic">Intelligence.</span>
+          <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-tight">
+            NEO Travels. <br /><span className="text-emerald-500">Fast. Green. Secure.</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
-            The premium digital platform for secure FASTag management, real-time recharges, and automated fleet safety.
+          <p className="text-xl text-slate-300 mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
+            India's premium platform for FASTag management. Instant recharges, automated fleet tracking, and nationwide coverage.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button 
-              onClick={() => user ? setCurrentPage('recharge') : setShowAuthModal(true)}
-              className="w-full sm:w-auto bg-indigo-600 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center transition-all hover:bg-indigo-700 shadow-xl shadow-indigo-600/30"
+              onClick={() => setCurrentPage('recharge')}
+              className="bg-emerald-600 text-white px-12 py-5 rounded-full font-black text-lg hover:bg-emerald-500 transition-all shadow-2xl shadow-emerald-600/20 active:scale-95"
             >
-              Get Started <ArrowRight size={20} className="ml-3" />
+              Start Recharge
             </button>
-            <div className="flex items-center space-x-4 bg-white/5 backdrop-blur-md px-8 py-5 rounded-2xl border border-white/10">
-               <Phone size={18} className="text-indigo-400" />
-               <div className="text-left">
-                  <p className="text-white text-lg font-black tracking-tight">1800 3300 3333</p>
-               </div>
+            <div className="flex items-center space-x-4 bg-white/5 px-10 py-5 rounded-full border border-white/10 text-white hover:bg-white/10 transition-colors cursor-pointer">
+              <Phone size={20} className="text-emerald-400" /> 
+              <span className="font-black text-lg">8143900450</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Modern Stats Bar */}
-      <section className="max-w-7xl mx-auto px-4 -mt-24 relative z-20">
-        <div className="bg-white rounded-[3rem] shadow-xl p-12 grid grid-cols-1 md:grid-cols-4 gap-8 border border-slate-100">
-           <div className="text-center">
-             <h4 className="text-4xl font-black text-indigo-600">35+</h4>
-             <p className="text-slate-400 font-bold uppercase text-[10px] mt-2 tracking-widest">Issuing Banks</p>
-           </div>
-           <div className="text-center border-x-0 md:border-x border-slate-100">
-             <h4 className="text-4xl font-black text-indigo-600">100%</h4>
-             <p className="text-slate-400 font-bold uppercase text-[10px] mt-2 tracking-widest">Secure Flow</p>
-           </div>
-           <div className="text-center border-r-0 md:border-r border-slate-100">
-             <h4 className="text-4xl font-black text-indigo-600">₹3k</h4>
-             <p className="text-slate-400 font-bold uppercase text-[10px] mt-2 tracking-widest">Entry Limit</p>
-           </div>
-           <div className="text-center">
-             <h4 className="text-4xl font-black text-indigo-600">24/7</h4>
-             <p className="text-slate-400 font-bold uppercase text-[10px] mt-2 tracking-widest">Support Hub</p>
-           </div>
-        </div>
+      {/* Expanded Information Section */}
+      <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6 -mt-32 relative z-20">
+        {[
+          { title: "NEO Instant", desc: "Balance reflects in 60 seconds", icon: <Zap className="text-emerald-500" /> },
+          { title: "99.9% Uptime", desc: "No delays at toll plazas", icon: <Clock className="text-emerald-500" /> },
+          { title: "Pan-India", desc: "Works at 1000+ toll plazas", icon: <Globe className="text-emerald-500" /> },
+          { title: "Nex Security", desc: "Bank-grade data safety", icon: <ShieldCheck className="text-emerald-500" /> },
+        ].map((item, i) => (
+          <div key={i} className="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-slate-100 transition-transform hover:-translate-y-2">
+            <div className="mb-4 bg-emerald-50 w-12 h-12 flex items-center justify-center rounded-2xl">{item.icon}</div>
+            <h3 className="text-sm font-black uppercase mb-1 text-slate-900">{item.title}</h3>
+            <p className="text-slate-500 text-xs font-medium leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
       </section>
 
-      {/* Feature Blocks - Removed Images */}
-      <section className="max-w-7xl mx-auto px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div className="relative rounded-[3rem] overflow-hidden group shadow-lg h-[400px] bg-slate-900 flex items-center p-12">
-            <div className="absolute inset-0 z-0 bg-gradient-to-tr from-indigo-900/40 to-transparent"></div>
+      {/* Benefits Information */}
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <div className="flex flex-col md:flex-row items-center gap-16">
+          <div className="flex-1 space-y-8">
+            <h2 className="text-4xl font-black text-slate-900 leading-tight">Why Choose <span className="text-emerald-600 italic underline decoration-emerald-200">NEO Travels</span> Official Services?</h2>
+            <div className="space-y-6">
+              {[
+                "Cashless transactions for a seamless journey across Bharat.",
+                "Proprietary security protocols for wallet protection.",
+                "SMS alerts for every toll deduction and low balance.",
+                "Enterprise portal for easy tracking and historical reporting.",
+                "Official NHAI & NPCI registered facilitation partner."
+              ].map((text, i) => (
+                <div key={i} className="flex items-start space-x-4">
+                  <div className="mt-1 bg-emerald-100 p-1 rounded-full text-emerald-600"><CheckCircle size={16} /></div>
+                  <p className="text-slate-600 font-medium leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 bg-emerald-600 rounded-[3rem] p-12 text-white relative overflow-hidden shadow-2xl">
             <div className="relative z-10">
-               <ShieldCheck size={48} className="text-indigo-500 mb-6" />
-               <h3 className="text-white text-3xl font-black mb-3">Registered Reliability.</h3>
-               <p className="text-slate-300 text-base max-w-md font-medium">
-                 Official partner for all national toll plazas, ensuring zero-stop travel for registered fleets.
-               </p>
+              <h3 className="text-2xl font-black mb-4">The NEO Advantage</h3>
+              <p className="text-emerald-100 font-medium mb-8 leading-relaxed">
+                NEO Travels ensures that your road travel is backed by the most stable fintech infrastructure in Hyderabad. From private cars to large commercial fleets, we handle it all with precision.
+              </p>
+              <div className="bg-white/10 p-6 rounded-3xl border border-white/20">
+                <p className="text-xs font-black uppercase tracking-widest mb-2 text-emerald-300">Total Registered Vehicles</p>
+                <p className="text-5xl font-black">50,000+</p>
+              </div>
             </div>
+            <Car size={300} className="absolute -bottom-20 -right-20 text-emerald-700/30 rotate-12" />
           </div>
-          <div className="relative rounded-[3rem] overflow-hidden group shadow-lg h-[400px] bg-indigo-950 flex items-center p-12">
-            <div className="absolute inset-0 z-0 bg-gradient-to-bl from-slate-900/40 to-transparent"></div>
-            <div className="relative z-10 text-white">
-               <CheckCircle size={48} className="text-indigo-400 mb-6" />
-               <h3 className="text-3xl font-black mb-3">Seamless Safetys.</h3>
-               <p className="text-indigo-100 text-base max-w-md font-medium">
-                 End-to-end encryption for every transaction, verified by I travels Private limited.
-               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-           {[
-             { title: 'Authorized', desc: 'Officially registered as I travels Private limited.', icon: <ShieldCheck size={28} /> },
-             { title: 'Safetys', desc: 'Enterprise-grade protection for your travel wallet.', icon: <CheckCircle size={28} /> },
-             { title: 'Verified', desc: 'Direct integration with 35+ major Indian banks.', icon: <Zap size={28} /> },
-           ].map((item, idx) => (
-             <div key={idx} className="bg-slate-50 p-12 rounded-[2.5rem] border border-slate-100 hover:bg-white hover:shadow-lg transition-all text-center">
-                <div className="inline-flex p-4 bg-indigo-600 text-white rounded-2xl mb-6">{item.icon}</div>
-                <h4 className="text-xl font-black text-slate-900 mb-3 uppercase tracking-tight">{item.title}</h4>
-                <p className="text-slate-500 font-medium text-sm leading-relaxed">{item.desc}</p>
-             </div>
-           ))}
         </div>
       </section>
     </div>
@@ -155,20 +123,15 @@ const App: React.FC = () => {
   const renderContent = () => {
     switch (currentPage) {
       case 'dashboard':
-        return user ? (
-          <Dashboard 
-            user={user} 
-            vehicles={vehicles} 
-            onAddVehicle={() => setShowVehicleModal(true)}
-            onRecharge={() => setCurrentPage('recharge')}
-          />
-        ) : <div className="p-32 text-center font-black text-slate-400 text-2xl uppercase tracking-[0.2em]">Login Required.</div>;
+        return <Dashboard user={user} vehicles={vehicles} onAddVehicle={() => setShowVehicleModal(true)} onRecharge={() => setCurrentPage('recharge')} />;
       case 'recharge':
         return <RechargeForm onSuccess={handleRechargeSuccess} />;
       case 'fees':
         return <FeesContent />;
       case 'documentation':
         return <DocumentationContent />;
+      case 'faq':
+        return <FAQContent />;
       case 'legal':
         return <LegalContent />;
       case 'home':
@@ -178,106 +141,69 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col selection:bg-indigo-100 bg-white">
-      <Navbar 
-        user={user} 
-        onLogout={handleLogout} 
-        onOpenAuth={() => { setIsSignup(false); setShowAuthModal(true); }} 
-        onNavigate={setCurrentPage}
-      />
+    <div className="min-h-screen flex flex-col bg-white selection:bg-emerald-100 selection:text-emerald-900">
+      <Navbar onNavigate={setCurrentPage} currentPage={currentPage} />
+      <main className="flex-1">{renderContent()}</main>
       
-      <main className="flex-1">
-        {renderContent()}
-      </main>
-
-      <footer className="bg-slate-950 text-white py-24 border-t border-white/5">
+      {showVehicleModal && <VehicleModal onClose={() => setShowVehicleModal(false)} onAdd={handleAddVehicle} />}
+      <AIChatWidget />
+      
+      <footer className="bg-slate-900 text-white py-20 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
-             <div className="col-span-1 md:col-span-2 space-y-8">
-                <div className="flex items-center">
-                  <div className="bg-indigo-600 p-3 rounded-xl text-white mr-4 shadow-xl">
-                    <Car size={32} />
-                  </div>
-                  <span className="text-3xl font-black tracking-tighter">I travels</span>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div className="col-span-1 md:col-span-2 space-y-8">
+              <div className="flex items-center">
+                <div className="bg-emerald-600 p-2 rounded-xl text-white mr-3">
+                  <Car size={24} />
                 </div>
-                <p className="text-slate-400 max-w-md text-base font-medium leading-relaxed">
-                  The exclusive registered gateway for premium travel recharges and FASTag logistics. Built for India's national expressway network.
-                </p>
-                <div className="flex items-center space-x-4 text-green-400 font-black uppercase text-[10px] tracking-widest bg-white/5 w-fit px-6 py-3 rounded-full border border-white/10">
-                  <ShieldCheck size={18} /> <span>Registered as I travels Private limited</span>
+                <span className="text-2xl font-black tracking-tighter">NEO Travels</span>
+              </div>
+              <p className="text-slate-400 max-w-sm font-medium leading-relaxed">
+                The leading FASTag portal by <span className="text-emerald-500 font-bold">NEOFIN NEX India Private Limited</span>. Facilitating high-speed transit across every toll gate in India.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start text-slate-400">
+                  <MapPin className="mr-3 text-emerald-500 flex-shrink-0" size={20} />
+                  <span className="text-xs leading-relaxed">Plot no 102, First floor, Sukiran Apartments, Venkatagiri, Yousufguda, Hyderabad, Telangana 500045</span>
                 </div>
-             </div>
-             <div>
-                <h5 className="font-black mb-8 uppercase text-[10px] tracking-[0.3em] text-indigo-400">Hub</h5>
-                <ul className="space-y-4 text-slate-400 font-bold text-sm">
-                  <li><button onClick={() => setCurrentPage('home')} className="hover:text-white transition-colors">Home</button></li>
-                  <li><button onClick={() => setCurrentPage('recharge')} className="hover:text-white transition-colors">Recharge</button></li>
-                  <li><button onClick={() => setCurrentPage('dashboard')} className="hover:text-white transition-colors">Dashboard</button></li>
-                  <li><button onClick={() => setCurrentPage('documentation')} className="hover:text-white transition-colors">Documentation</button></li>
-                  <li><button onClick={() => setCurrentPage('fees')} className="hover:text-white transition-colors">Fees</button></li>
-                  <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Safetys</button></li>
-                </ul>
-             </div>
-             <div>
-                <h5 className="font-black mb-8 uppercase text-[10px] tracking-[0.3em] text-indigo-400">Contact</h5>
-                <ul className="space-y-6 text-slate-400 font-bold text-sm">
-                  <li className="text-white text-xl font-black">1800 3300 3333</li>
-                  <li>support@itravels.com</li>
-                  <li>Mumbai, India</li>
-                </ul>
-             </div>
+                <div className="flex items-center text-slate-400">
+                  <Phone className="mr-3 text-emerald-500" size={18} />
+                  <span className="text-xs">8143900450</span>
+                </div>
+                <div className="flex items-center text-slate-400">
+                  <Mail className="mr-3 text-emerald-500" size={18} />
+                  <span className="text-xs">support@thequickpayme.com</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h5 className="font-black mb-8 uppercase text-[10px] tracking-[0.3em] text-emerald-500">Navigation</h5>
+              <ul className="space-y-4 text-slate-400 font-bold text-sm">
+                <li><button onClick={() => setCurrentPage('recharge')} className="hover:text-white transition-colors">Recharge Wallet</button></li>
+                <li><button onClick={() => setCurrentPage('fees')} className="hover:text-white transition-colors">Fees & Charges</button></li>
+                <li><button onClick={() => setCurrentPage('documentation')} className="hover:text-white transition-colors">Required Docs</button></li>
+                <li><button onClick={() => setCurrentPage('faq')} className="hover:text-white transition-colors">Help Center</button></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-black mb-8 uppercase text-[10px] tracking-[0.3em] text-emerald-500">Legal Compliance</h5>
+              <ul className="space-y-4 text-slate-400 font-bold text-sm">
+                <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Privacy Policy</button></li>
+                <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Terms of Service</button></li>
+                <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Refund Policy</button></li>
+                <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Grievance Redressal</button></li>
+              </ul>
+            </div>
           </div>
-          <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-slate-500 text-[10px] font-black uppercase tracking-[0.4em] gap-8">
-            <p>© 2024 I travels Private limited. Safetys Guaranteed.</p>
-            <div className="flex space-x-8">
-               <span className="hover:text-indigo-400 cursor-pointer transition-all">Twitter</span>
-               <span className="hover:text-indigo-400 cursor-pointer transition-all">LinkedIn</span>
-               <span className="hover:text-indigo-400 cursor-pointer transition-all">Instagram</span>
+          <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-medium uppercase tracking-[0.3em] opacity-60 text-center md:text-left">
+            <p>© 2026 NEOFIN NEX India Private Limited. All Rights Reserved.</p>
+            <div className="flex space-x-6 text-[10px]">
+              <span className="bg-emerald-950 px-4 py-2 rounded border border-emerald-900/50">GSTIN: Registered</span>
+              <span className="bg-emerald-950 px-4 py-2 rounded border border-emerald-900/50">CIN: Registered</span>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* Auth Modal - No Images */}
-      {showAuthModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl" onClick={() => setShowAuthModal(false)}></div>
-          <div className="relative bg-white w-full max-w-lg rounded-[3rem] shadow-2xl overflow-hidden p-16 text-center animate-in zoom-in-95 duration-500">
-            <div className="mb-8 inline-flex p-6 bg-indigo-50 text-indigo-600 rounded-3xl shadow-inner">
-              <Car size={48} />
-            </div>
-            <h2 className="text-4xl font-black text-slate-900 mb-4 tracking-tighter">Portal Access</h2>
-            <p className="text-slate-500 mb-10 text-base font-medium leading-relaxed">Login as **Sri Krishna** to manage your registered fleet.</p>
-            
-            <div className="space-y-6">
-              <button 
-                onClick={handleLogin}
-                className="w-full bg-indigo-600 text-white font-black py-6 rounded-2xl hover:bg-indigo-700 transition-all flex items-center justify-center shadow-lg text-xl"
-              >
-                Sign in as Sri Krishna
-              </button>
-              <div className="flex items-center space-x-3 justify-center bg-slate-50 py-6 rounded-2xl border border-slate-100">
-                 <Phone size={18} className="text-indigo-600" />
-                 <span className="text-lg font-black text-slate-900">1800 3300 3333</span>
-              </div>
-            </div>
-            
-            <div className="mt-12 flex items-center justify-center space-x-3 text-slate-400">
-               <ShieldCheck size={20} className="text-indigo-400" />
-               <span className="text-[10px] uppercase tracking-[0.3em] font-black">Registered Entity Secure Gate</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showVehicleModal && (
-        <VehicleModal 
-          onClose={() => setShowVehicleModal(false)} 
-          onAdd={handleAddVehicle} 
-        />
-      )}
-
-      <AIChatWidget />
     </div>
   );
 };

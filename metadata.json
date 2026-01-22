@@ -1,6 +1,7 @@
+
 {
-  "name": "I travels FASTag",
-  "description": "A comprehensive FASTag management and recharge platform for Indian travelers, featuring secure payments, multi-bank support, and AI-powered assistance.",
+  "name": "NEO Travels FASTag",
+  "description": "Premium FASTag management and recharge platform by NEOFIN NEX India Private Limited. Featuring instant recharges, secure multi-bank support, and AI-powered assistance for Indian highways.",
   "requestFramePermissions": [
     "camera"
   ]
