@@ -9,6 +9,7 @@ import DocumentationContent from './components/DocumentationContent';
 import FAQContent from './components/FAQContent';
 import AIChatWidget from './components/AIChatWidget';
 import VehicleModal from './components/VehicleModal';
+import GrievanceContent from './components/GrievanceContent';
 import { User, Vehicle, VehicleType } from './types';
 import { ShieldCheck, Car, Phone, Zap, Clock, Globe, CheckCircle, Mail, MapPin } from 'lucide-react';
 
@@ -134,6 +135,8 @@ const App: React.FC = () => {
         return <FAQContent />;
       case 'legal':
         return <LegalContent />;
+      case 'grievance':
+        return <GrievanceContent />;
       case 'home':
       default:
         return renderHome();
@@ -191,7 +194,7 @@ const App: React.FC = () => {
                 <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Privacy Policy</button></li>
                 <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Terms of Service</button></li>
                 <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Refund Policy</button></li>
-                <li><button onClick={() => setCurrentPage('legal')} className="hover:text-white transition-colors">Grievance Redressal</button></li>
+                <li><button onClick={() => setCurrentPage('grievance')} className="hover:text-white transition-colors">Grievance Redressal</button></li>
               </ul>
             </div>
           </div>
