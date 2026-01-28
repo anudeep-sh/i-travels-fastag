@@ -29,12 +29,12 @@ const VehicleModal: React.FC<VehicleModalProps> = ({ onClose, onAdd }) => {
     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-md" onClick={onClose}></div>
       <div className="relative bg-white w-full max-w-lg rounded-[3rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-        <div className="bg-emerald-600 p-8 text-white flex justify-between items-center">
+        <div className="bg-blue-900 p-8 text-white flex justify-between items-center border-b-4 border-red-600">
           <div>
             <h3 className="text-xl font-black flex items-center tracking-tight">
-              <Car className="mr-3" /> Register Vehicle
+              <Car className="mr-3 text-red-500" /> Register Vehicle
             </h3>
-            <p className="text-[10px] text-emerald-100 font-bold uppercase tracking-widest mt-1">Official NHAI Linking Service</p>
+            <p className="text-[10px] text-blue-100 font-bold uppercase tracking-widest mt-1">Official MTST SEVA Service</p>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">
             <X size={24} />
@@ -42,10 +42,10 @@ const VehicleModal: React.FC<VehicleModalProps> = ({ onClose, onAdd }) => {
         </div>
         
         <form onSubmit={handleSubmit} className="p-10 space-y-8">
-          <div className="bg-emerald-50 p-6 rounded-3xl flex items-start space-x-4 border border-emerald-100">
-            <Info className="mt-0.5 flex-shrink-0 text-emerald-600" size={20} />
-            <p className="text-emerald-800 text-xs font-medium leading-relaxed">
-              Verify your Registration Certificate (RC) details before submission. Tags are linked instantly to your Emerald Wallet.
+          <div className="bg-blue-50 p-6 rounded-3xl flex items-start space-x-4 border border-blue-100">
+            <Info className="mt-0.5 flex-shrink-0 text-red-600" size={20} />
+            <p className="text-blue-800 text-xs font-medium leading-relaxed">
+              Verify your Registration Certificate (RC) details before submission. Tags are linked instantly to your On road Go Wallet.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ const VehicleModal: React.FC<VehicleModalProps> = ({ onClose, onAdd }) => {
               required
               type="text"
               placeholder="e.g. MH01AB1234"
-              className="w-full px-6 py-4 rounded-2xl border-2 border-slate-50 focus:border-emerald-600 outline-none transition-all uppercase font-black text-xl text-slate-900 bg-slate-50"
+              className="w-full px-6 py-4 rounded-2xl border-2 border-slate-50 focus:border-red-600 outline-none transition-all uppercase font-black text-xl text-slate-900 bg-slate-50"
               value={vNumber}
               onChange={(e) => setVNumber(e.target.value)}
             />
@@ -65,7 +65,7 @@ const VehicleModal: React.FC<VehicleModalProps> = ({ onClose, onAdd }) => {
             <div className="space-y-2">
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Vehicle Class</label>
               <select 
-                className="w-full px-4 py-4 rounded-2xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700 text-sm"
+                className="w-full px-4 py-4 rounded-2xl border-2 border-slate-50 focus:border-blue-600 outline-none bg-slate-50 font-bold text-slate-700 text-sm"
                 value={vType}
                 onChange={(e) => setVType(e.target.value as VehicleType)}
               >
@@ -78,7 +78,7 @@ const VehicleModal: React.FC<VehicleModalProps> = ({ onClose, onAdd }) => {
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Issuing Bank</label>
               <select 
                 required
-                className="w-full px-4 py-4 rounded-2xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700 text-sm"
+                className="w-full px-4 py-4 rounded-2xl border-2 border-slate-50 focus:border-red-600 outline-none bg-slate-50 font-bold text-slate-700 text-sm"
                 value={vBank}
                 onChange={(e) => setVBank(e.target.value)}
               >
@@ -90,7 +90,7 @@ const VehicleModal: React.FC<VehicleModalProps> = ({ onClose, onAdd }) => {
             </div>
           </div>
 
-          <button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center text-lg">
+          <button className="w-full bg-red-600 hover:bg-red-500 text-white font-black py-5 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center text-lg">
             <ShieldCheck size={20} className="mr-3" /> Confirm & Link Tag
           </button>
         </form>

@@ -59,10 +59,10 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
 
   return (
     <div className="max-w-2xl mx-auto py-20 px-4">
-      <div className="bg-white rounded-[3rem] shadow-[0_35px_60px_-15px_rgba(16,185,129,0.1)] overflow-hidden border border-slate-100">
-        <div className="bg-emerald-600 p-12 text-white text-center">
+      <div className="bg-white rounded-[3rem] shadow-[0_35px_60px_-15px_rgba(220,38,38,0.1)] overflow-hidden border border-slate-100">
+        <div className="bg-blue-900 p-12 text-white text-center border-b-8 border-red-600">
           <h2 className="text-3xl font-black tracking-tight">FASTag Wallet Top-up</h2>
-          <p className="text-emerald-100 mt-2 font-bold uppercase text-[10px] tracking-widest">Instant Emerald Recharge Service</p>
+          <p className="text-red-400 mt-2 font-bold uppercase text-[10px] tracking-widest">Instant Red-Blue Recharge Service</p>
         </div>
 
         <div className="p-10 lg:p-12">
@@ -74,7 +74,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                   type="text"
                   required
                   placeholder="e.g. MH01AB1234"
-                  className="w-full px-8 py-5 rounded-2xl border-2 border-slate-50 focus:border-emerald-600 outline-none transition-all uppercase text-2xl font-black text-slate-900 bg-slate-50 placeholder:text-slate-300"
+                  className="w-full px-8 py-5 rounded-2xl border-2 border-slate-50 focus:border-red-600 outline-none transition-all uppercase text-2xl font-black text-slate-900 bg-slate-50 placeholder:text-slate-300"
                   value={vehicleNumber}
                   onChange={(e) => setVehicleNumber(e.target.value)}
                 />
@@ -84,7 +84,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                 <label className="text-xs font-black text-slate-500 uppercase tracking-widest">Select Issuing Bank</label>
                 <select 
                   required
-                  className="w-full px-8 py-5 rounded-2xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700"
+                  className="w-full px-8 py-5 rounded-2xl border-2 border-slate-50 focus:border-blue-600 outline-none bg-slate-50 font-bold text-slate-700"
                   value={selectedBank}
                   onChange={(e) => setSelectedBank(e.target.value)}
                 >
@@ -102,14 +102,14 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                   required
                   min="100"
                   placeholder="₹ 500.00"
-                  className="w-full px-8 py-5 rounded-2xl border-2 border-slate-50 focus:border-emerald-600 outline-none transition-all text-2xl font-black text-emerald-600 bg-slate-50"
+                  className="w-full px-8 py-5 rounded-2xl border-2 border-slate-50 focus:border-red-600 outline-none transition-all text-2xl font-black text-blue-600 bg-slate-50"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">Minimum recharge amount is ₹100</p>
               </div>
 
-              <button className="w-full bg-emerald-600 text-white font-black py-6 rounded-2xl shadow-xl flex items-center justify-center text-xl hover:bg-emerald-500 transition-colors">
+              <button className="w-full bg-red-600 text-white font-black py-6 rounded-2xl shadow-xl flex items-center justify-center text-xl hover:bg-red-500 transition-colors">
                 Proceed to Payment <ArrowRight className="ml-3" />
               </button>
             </form>
@@ -120,23 +120,23 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
               <div className="flex items-center justify-between bg-slate-900 p-8 rounded-3xl text-white">
                 <div>
                   <p className="text-slate-400 font-bold uppercase text-[10px] tracking-widest mb-1">Vehicle: {vehicleNumber.toUpperCase()}</p>
-                  <h3 className="text-4xl font-black text-emerald-400">₹{amount}.00</h3>
+                  <h3 className="text-4xl font-black text-red-400">₹{amount}.00</h3>
                 </div>
-                <div className="bg-emerald-600/20 p-3 rounded-2xl border border-emerald-500/30">
-                  <ShieldCheck className="text-emerald-400" />
+                <div className="bg-red-600/20 p-3 rounded-2xl border border-red-500/30">
+                  <ShieldCheck className="text-red-400" />
                 </div>
               </div>
 
               <div className="flex p-1 bg-slate-50 rounded-2xl">
                 <button 
                   onClick={() => setPaymentMethod('card')}
-                  className={`flex-1 flex items-center justify-center py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all ${paymentMethod === 'card' ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-400'}`}
+                  className={`flex-1 flex items-center justify-center py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all ${paymentMethod === 'card' ? 'bg-white shadow-sm text-red-600' : 'text-slate-400'}`}
                 >
                   <CreditCard size={16} className="mr-2" /> Card Payment
                 </button>
                 <button 
                   onClick={() => setPaymentMethod('upi')}
-                  className={`flex-1 flex items-center justify-center py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all ${paymentMethod === 'upi' ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-400'}`}
+                  className={`flex-1 flex items-center justify-center py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all ${paymentMethod === 'upi' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-400'}`}
                 >
                   <QrCode size={16} className="mr-2" /> UPI Gateway
                 </button>
@@ -152,7 +152,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                         type="text"
                         required
                         placeholder="NAME ON CARD"
-                        className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700 uppercase"
+                        className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-red-600 outline-none bg-slate-50 font-bold text-slate-700 uppercase"
                         value={cardName}
                         onChange={(e) => setCardName(e.target.value)}
                       />
@@ -167,7 +167,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                         type="text"
                         required
                         placeholder="0000 0000 0000 0000"
-                        className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700 tracking-[0.2em]"
+                        className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-blue-600 outline-none bg-slate-50 font-bold text-slate-700 tracking-[0.2em]"
                         value={cardNumber}
                         onChange={handleCardNumberChange}
                       />
@@ -183,7 +183,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                           type="text"
                           required
                           placeholder="MM / YY"
-                          className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700"
+                          className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-blue-600 outline-none bg-slate-50 font-bold text-slate-700"
                           value={expiry}
                           onChange={handleExpiryChange}
                         />
@@ -197,7 +197,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                           type="password"
                           required
                           placeholder="***"
-                          className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700"
+                          className="w-full pl-12 pr-6 py-4 rounded-xl border-2 border-slate-50 focus:border-red-600 outline-none bg-slate-50 font-bold text-slate-700"
                           value={cvv}
                           onChange={handleCvvChange}
                         />
@@ -208,7 +208,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                   <button 
                     type="submit"
                     disabled={isProcessing}
-                    className="w-full bg-emerald-600 text-white font-black py-6 rounded-2xl text-xl shadow-xl flex items-center justify-center hover:bg-emerald-500 disabled:bg-slate-200"
+                    className="w-full bg-red-600 text-white font-black py-6 rounded-2xl text-xl shadow-xl flex items-center justify-center hover:bg-red-500 disabled:bg-slate-200"
                   >
                     {isProcessing ? (
                       <div className="flex items-center">
@@ -229,12 +229,12 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
                   <input 
                     type="text"
                     placeholder="example@upi"
-                    className="w-full px-8 py-4 rounded-xl border-2 border-slate-50 focus:border-emerald-600 outline-none bg-slate-50 font-bold text-slate-700 text-center"
+                    className="w-full px-8 py-4 rounded-xl border-2 border-slate-50 focus:border-blue-600 outline-none bg-slate-50 font-bold text-slate-700 text-center"
                   />
                   <button 
                     onClick={handleSubmit}
                     disabled={isProcessing}
-                    className="w-full bg-emerald-600 text-white font-black py-6 rounded-2xl text-xl shadow-xl"
+                    className="w-full bg-blue-600 text-white font-black py-6 rounded-2xl text-xl shadow-xl"
                   >
                     {isProcessing ? "Verifying VPA..." : "Initiate UPI Request"}
                   </button>
@@ -250,7 +250,7 @@ const RechargeForm: React.FC<RechargeFormProps> = ({ onSuccess }) => {
 
           {step === 3 && (
             <div className="text-center py-12 space-y-8 animate-in zoom-in duration-500">
-               <div className="inline-flex items-center justify-center w-28 h-28 bg-emerald-500 text-white rounded-full shadow-[0_20px_50px_-10px_rgba(16,185,129,0.5)]">
+               <div className="inline-flex items-center justify-center w-28 h-28 bg-red-600 text-white rounded-full shadow-[0_20px_50px_-10px_rgba(220,38,38,0.5)]">
                  <CheckCircle2 size={56} />
                </div>
                <div>

@@ -1,6 +1,7 @@
+
 {
-  "name": "NEO Travels FASTag",
-  "description": "Premium FASTag management and recharge platform by NEOFIN NEX India Private Limited. Featuring instant recharges, secure multi-bank support, and AI-powered assistance for Indian highways.",
+  "name": "On road Go FASTag",
+  "description": "Premium FASTag management and recharge platform by MTST SEVA Technologies Pvt. Ltd. Featuring instant recharges, secure multi-bank support, and AI-powered assistance for Indian highways.",
   "requestFramePermissions": [
     "camera"
   ]

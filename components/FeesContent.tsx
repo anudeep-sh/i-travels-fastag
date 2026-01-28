@@ -22,22 +22,22 @@ const FeesContent: React.FC = () => {
     <div className="max-w-7xl mx-auto py-16 px-4 space-y-12 animate-in fade-in duration-500">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-black text-slate-900 tracking-tight">Fees & Charges</h1>
-        <p className="text-slate-500 text-base font-medium">Transparent pricing for all FASTag related services.</p>
+        <p className="text-slate-500 text-base font-medium">Transparent pricing for all FASTag related services by MTST SEVA.</p>
       </div>
 
-      <div className="bg-emerald-50 border border-emerald-100 p-6 rounded-3xl flex items-start space-x-4">
-        <div className="p-2 bg-emerald-600 text-white rounded-xl shadow-lg">
+      <div className="bg-red-50 border border-red-100 p-6 rounded-3xl flex items-start space-x-4">
+        <div className="p-2 bg-red-600 text-white rounded-xl shadow-lg">
           <Info size={20} />
         </div>
-        <p className="text-emerald-800 text-sm font-medium leading-relaxed">
-          The following charges are standardized across all NHAI authorized issuing banks. Note that some banks might have additional promotional offers or convenience fees for credit card payments.
+        <p className="text-red-800 text-sm font-medium leading-relaxed">
+          The following charges are standardized across all NHAI authorized issuing banks. Note that some banks might have additional promotional offers or convenience fees for card payments.
         </p>
       </div>
 
       {/* Table 1: Particulars */}
       <div className="rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-xl">
         <table className="w-full text-left border-collapse">
-          <thead className="bg-emerald-600 text-white">
+          <thead className="bg-blue-900 text-white">
             <tr>
               <th className="px-8 py-6 text-sm font-black uppercase tracking-widest border-r border-white/10">Service Particulars</th>
               <th className="px-8 py-6 text-sm font-black uppercase tracking-widest">Amount (INR)</th>
@@ -45,7 +45,7 @@ const FeesContent: React.FC = () => {
           </thead>
           <tbody className="bg-white divide-y divide-slate-100">
             {generalFees.map((fee, idx) => (
-              <tr key={idx} className="hover:bg-slate-50 transition-colors">
+              <tr key={idx} className="hover:bg-blue-50/30 transition-colors">
                 <td className="px-8 py-6 text-sm text-slate-700 font-bold border-r border-slate-50">{fee.particulars}</td>
                 <td className="px-8 py-6 text-sm text-slate-600 font-medium">{fee.amount}</td>
               </tr>
@@ -57,7 +57,7 @@ const FeesContent: React.FC = () => {
       {/* Table 2: Vehicle Class */}
       <div className="rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-xl">
         <table className="w-full text-left border-collapse">
-          <thead className="bg-emerald-600 text-white">
+          <thead className="bg-red-600 text-white">
             <tr>
               <th className="px-8 py-6 text-sm font-black uppercase tracking-widest border-r border-white/10 w-1/4">Class ID</th>
               <th className="px-8 py-6 text-sm font-black uppercase tracking-widest border-r border-white/10 w-1/2">Vehicle Description</th>
@@ -66,10 +66,10 @@ const FeesContent: React.FC = () => {
           </thead>
           <tbody className="bg-white divide-y divide-slate-100">
             {vehicleClasses.map((v, idx) => (
-              <tr key={idx} className="hover:bg-slate-50 transition-colors">
+              <tr key={idx} className="hover:bg-red-50/30 transition-colors">
                 <td className="px-8 py-6 text-sm text-slate-900 font-black border-r border-slate-50">{v.class}</td>
                 <td className="px-8 py-6 text-sm text-slate-700 font-bold border-r border-slate-50">{v.description}</td>
-                <td className="px-8 py-6 text-sm text-emerald-600 font-black">{v.minBalance}</td>
+                <td className="px-8 py-6 text-sm text-blue-600 font-black">{v.minBalance}</td>
               </tr>
             ))}
           </tbody>

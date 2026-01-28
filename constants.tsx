@@ -2,10 +2,10 @@
 import { Bank, VehicleType, Transaction } from './types';
 
 export const INDIAN_BANKS: Bank[] = [
-  { id: 'axis', name: 'Axis Bank' },
-  { id: 'hdfc', name: 'HDFC Bank' },
-  { id: 'icici', name: 'ICICI Bank' },
   { id: 'sbi', name: 'State Bank of India' },
+  { id: 'hdfc', name: 'HDFC Bank' },
+  { id: 'axis', name: 'Axis Bank' },
+  { id: 'icici', name: 'ICICI Bank' },
   { id: 'kotak', name: 'Kotak Mahindra' },
   { id: 'idfc', name: 'IDFC FIRST Bank' },
   { id: 'pnb', name: 'Punjab National Bank' },
@@ -23,33 +23,33 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   { 
     id: 't1', 
     date: '2024-10-25', 
-    amount: 250.00, 
+    amount: 140.00, 
     type: 'Debit', 
-    description: 'Toll - Kherki Daula NH48', 
-    vehicleNumber: 'HR26DQ1234'
+    description: 'Toll - ORR Hyderabad', 
+    vehicleNumber: 'TS08EB1234'
   },
   { 
     id: 't2', 
     date: '2024-10-24', 
-    amount: 3000.00, 
+    amount: 2500.00, 
     type: 'Credit', 
-    description: 'Axis Bank Recharge', 
+    description: 'SBI Wallet Recharge', 
     vehicleNumber: '-'
   },
   { 
     id: 't3', 
     date: '2024-10-22', 
-    amount: 80.00, 
+    amount: 90.00, 
     type: 'Debit', 
-    description: 'Toll - Badarpur Flyover', 
-    vehicleNumber: 'DL3CAY5678'
+    description: 'Toll - Medchal NH44', 
+    vehicleNumber: 'TS03AH5678'
   },
   { 
     id: 't4', 
     date: '2024-10-20', 
-    amount: 150.00, 
+    amount: 210.00, 
     type: 'Debit', 
-    description: 'Toll - Yamuna Expressway', 
-    vehicleNumber: 'HR26DQ1234'
+    description: 'Toll - Vijayawada Hwy', 
+    vehicleNumber: 'TS08EB1234'
   },
 ];

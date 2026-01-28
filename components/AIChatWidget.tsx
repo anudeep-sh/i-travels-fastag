@@ -6,7 +6,7 @@ import { getTravelAssistance } from '../services/geminiService';
 const AIChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'bot' | 'user', text: string}[]>([
-    { role: 'bot', text: 'Welcome to NEO Travels Assistance. How can I facilitate your journey today?' }
+    { role: 'bot', text: 'Welcome to On road Go Assistance. How can I facilitate your journey today?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -35,13 +35,12 @@ const AIChatWidget: React.FC = () => {
     <div className="fixed bottom-8 right-8 z-[60]">
       {isOpen ? (
         <div className="bg-white w-[350px] sm:w-[380px] h-[500px] rounded-[2.5rem] shadow-2xl flex flex-col border border-slate-100 overflow-hidden animate-in slide-in-from-bottom-5">
-          {/* Header */}
           <div className="bg-emerald-600 p-6 text-white flex justify-between items-center">
             <div className="flex items-center">
               <Bot size={22} className="mr-3" />
               <div>
-                <h4 className="font-black text-base tracking-tight">Support AI</h4>
-                <p className="text-[8px] text-emerald-200 uppercase font-black tracking-widest">Registered Assistant</p>
+                <h4 className="font-black text-base tracking-tight">On-Go Support</h4>
+                <p className="text-[8px] text-emerald-200 uppercase font-black tracking-widest">MTST SEVA Assistant</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/10 rounded-full">
@@ -49,7 +48,6 @@ const AIChatWidget: React.FC = () => {
             </button>
           </div>
 
-          {/* Messages */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50/50">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -73,7 +71,6 @@ const AIChatWidget: React.FC = () => {
             )}
           </div>
 
-          {/* Footer */}
           <div className="p-5 border-t bg-white">
             <div className="flex space-x-2">
               <input 

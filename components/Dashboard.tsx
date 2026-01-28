@@ -24,105 +24,98 @@ const Dashboard: React.FC<DashboardProps> = ({ user, vehicles, onAddVehicle, onR
   ];
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4 space-y-8 animate-in fade-in duration-700">
-      {/* Top Welcome Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+    <div className="max-w-7xl mx-auto py-12 px-4 space-y-10 animate-in fade-in duration-700">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm">
         <div>
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">Fleet Service Hub</h2>
-          <p className="text-xs text-slate-500 font-medium">Your registered vehicle tags are monitored for high-speed transit.</p>
+          <h2 className="text-3xl font-black text-slate-900 tracking-tight">Fleet Monitoring</h2>
+          <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Real-time highway transit surveillance</p>
         </div>
-        <div className="flex items-center space-x-3 bg-emerald-50 px-4 py-2 rounded-xl text-emerald-600 border border-emerald-100">
-          <ShieldCheck size={18} />
-          <span className="text-[10px] font-black uppercase tracking-widest">Official Registration Active</span>
+        <div className="flex items-center space-x-3 bg-blue-50 px-6 py-3 rounded-2xl text-blue-700 border border-blue-100">
+          <ShieldCheck size={20} className="text-red-600" />
+          <span className="text-[10px] font-black uppercase tracking-[0.2em]">MTST Verified Access</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Wallet Balance - Emerald Gradient */}
-        <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden group">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="bg-gradient-to-br from-red-600 via-red-700 to-blue-900 rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden group">
           <div className="relative z-10">
-            <div className="flex justify-between items-start mb-6">
-              <div className="p-3 bg-white/10 rounded-2xl backdrop-blur-md border border-white/10">
-                <Wallet className="text-white" size={24} />
+            <div className="flex justify-between items-start mb-10">
+              <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-xl border border-white/10">
+                <Wallet className="text-white" size={28} />
               </div>
               <button 
                 onClick={onRecharge}
-                className="bg-white text-emerald-700 px-5 py-2 rounded-full text-xs font-black hover:bg-emerald-50 transition-all shadow-lg active:scale-95"
+                className="bg-white text-red-700 px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl active:scale-95"
               >
-                Recharge Now
+                Top-up
               </button>
             </div>
-            <p className="text-emerald-100 text-[10px] font-black uppercase tracking-widest opacity-80">Available Wallet Balance</p>
-            <h3 className="text-4xl font-black mt-1">₹{user.walletBalance.toLocaleString()}</h3>
+            <p className="text-red-100 text-[10px] font-black uppercase tracking-[0.3em] opacity-70 mb-1">On road Go Balance</p>
+            <h3 className="text-5xl font-black tracking-tighter">₹{user.walletBalance.toLocaleString()}</h3>
           </div>
-          <Zap size={200} className="absolute -bottom-10 -right-10 text-white/5 -rotate-12 group-hover:scale-110 transition-transform duration-700" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
         </div>
 
-        {/* Vehicles Summary */}
-        <div className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
+        <div className="bg-white rounded-[3rem] p-10 shadow-sm border border-slate-100 flex flex-col justify-between">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h4 className="text-base font-black text-slate-900 tracking-tight uppercase">Active Fleet</h4>
-              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{vehicles.length} Vehicle(s) Linked</p>
+              <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">Active Fleet</h4>
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-[0.2em]">{vehicles.length} Units Registered</p>
             </div>
-            <button onClick={onAddVehicle} className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl hover:bg-emerald-100 transition-colors shadow-sm active:scale-90 border border-emerald-100">
-              <Plus size={20} />
+            <button onClick={onAddVehicle} className="p-3 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-colors border border-red-100 active:scale-90">
+              <Plus size={22} />
             </button>
           </div>
-          <div className="space-y-3 max-h-[160px] overflow-y-auto pr-2 custom-scrollbar">
+          <div className="space-y-4 max-h-[140px] overflow-y-auto pr-2 custom-scrollbar">
             {vehicles.map((v) => (
-              <div key={v.id} className="flex items-center p-3.5 rounded-2xl border border-slate-50 bg-slate-50/30 hover:bg-emerald-50/50 transition-colors group">
-                <div className="w-9 h-9 bg-white rounded-xl flex items-center justify-center mr-3 text-emerald-600 shadow-sm group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                  <Car size={18} />
+              <div key={v.id} className="flex items-center p-4 rounded-2xl border border-slate-50 bg-slate-50/50 group hover:border-blue-200 transition-all">
+                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mr-4 text-blue-600 shadow-sm group-hover:bg-red-600 group-hover:text-white transition-all">
+                  <Car size={20} />
                 </div>
-                <div>
-                  <p className="font-black text-[11px] uppercase tracking-wider text-slate-900">{v.number}</p>
-                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-tighter">{v.bank}</p>
+                <div className="flex-1">
+                  <p className="font-black text-xs uppercase tracking-widest text-slate-900">{v.number}</p>
+                  <p className="text-[9px] text-slate-400 font-black uppercase">{v.bank}</p>
                 </div>
-                <div className="ml-auto">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                </div>
+                <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse shadow-lg shadow-blue-500/50"></div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Info Portal */}
-        <div className="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-xl flex flex-col justify-between relative overflow-hidden group">
-          <div className="relative z-10">
-            <h4 className="text-base font-black uppercase tracking-tight mb-2 flex items-center">
-               <Zap size={16} className="mr-2 text-emerald-400" /> Service AI
+        <div className="bg-slate-900 rounded-[3rem] p-10 text-white shadow-xl flex flex-col justify-between border-t-8 border-blue-600">
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-widest mb-4 flex items-center text-red-500">
+               <Zap size={16} className="mr-2" /> Global Status
             </h4>
-            <p className="text-slate-400 text-xs font-medium leading-relaxed">
-              Real-time monitoring for toll disputes, blacklisted tags, and instant recharge assistance.
+            <p className="text-slate-400 text-xs font-bold leading-relaxed">
+              Monitoring 1,200+ toll plazas for transaction integrity and tag health.
             </p>
           </div>
-          <div className="relative z-10 mt-6 pt-6 border-t border-white/5 flex justify-between items-center">
-            <span className="text-[9px] font-black uppercase tracking-widest text-emerald-500">Always Online</span>
-            <div className="flex -space-x-2">
-               {[1,2,3].map(i => <div key={i} className="w-6 h-6 rounded-full border-2 border-slate-900 bg-emerald-600" />)}
+          <div className="mt-8 pt-8 border-t border-white/5 flex justify-between items-center">
+            <span className="text-[9px] font-black uppercase tracking-widest text-blue-400">Network Stable</span>
+            <div className="flex -space-x-3">
+               {[1,2,3].map(i => <div key={i} className={`w-8 h-8 rounded-full border-4 border-slate-900 ${i % 2 === 0 ? 'bg-red-600' : 'bg-blue-600'}`} />)}
             </div>
           </div>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-600/10 rounded-full blur-3xl group-hover:bg-emerald-600/20 transition-all"></div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
-          <h4 className="text-base font-black text-slate-900 mb-8 uppercase tracking-tight">Toll Consumption Analysis</h4>
-          <div className="h-[250px] w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="bg-white rounded-[3.5rem] p-10 shadow-sm border border-slate-100">
+          <h4 className="text-sm font-black text-slate-900 mb-10 uppercase tracking-widest">Spending Analytics</h4>
+          <div className="h-[280px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f8fafc" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#cbd5e1', fontSize: 10, fontWeight: 700}} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#cbd5e1', fontSize: 10, fontWeight: 700}} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 10, fontWeight: 900}} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 10, fontWeight: 900}} />
                 <Tooltip 
-                  contentStyle={{ borderRadius: '1rem', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
-                  cursor={{ fill: '#f1f5f9' }}
+                  contentStyle={{ borderRadius: '1.5rem', border: 'none', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)', fontWeight: 'bold' }}
+                  cursor={{ fill: '#f8fafc' }}
                 />
-                <Bar dataKey="amount" radius={[6, 6, 0, 0]}>
+                <Bar dataKey="amount" radius={[8, 8, 0, 0]}>
                   {chartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.amount > 1000 ? '#059669' : '#e2e8f0'} />
+                    <Cell key={`cell-${index}`} fill={entry.amount > 1000 ? '#dc2626' : '#2563eb'} />
                   ))}
                 </Bar>
               </BarChart>
@@ -130,20 +123,20 @@ const Dashboard: React.FC<DashboardProps> = ({ user, vehicles, onAddVehicle, onR
           </div>
         </div>
 
-        <div className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
-          <h4 className="text-base font-black text-slate-900 uppercase tracking-tight mb-8">Recent Wallet Activity</h4>
-          <div className="space-y-4 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
+        <div className="bg-white rounded-[3.5rem] p-10 shadow-sm border border-slate-100">
+          <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-10">Transaction Logs</h4>
+          <div className="space-y-4 max-h-[280px] overflow-y-auto pr-3 custom-scrollbar">
             {MOCK_TRANSACTIONS.map((t) => (
-              <div key={t.id} className="flex items-center p-4 rounded-[1.5rem] border border-slate-50 hover:bg-slate-50 transition-all hover:border-emerald-100">
-                <div className={`p-3 rounded-xl mr-4 ${t.type === 'Credit' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-50 text-slate-600'}`}>
-                  {t.type === 'Credit' ? <ArrowDownLeft size={20} /> : <ArrowUpRight size={20} />}
+              <div key={t.id} className="flex items-center p-5 rounded-[2rem] border border-slate-50 hover:bg-slate-50 transition-all group">
+                <div className={`p-4 rounded-2xl mr-5 ${t.type === 'Credit' ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'}`}>
+                  {t.type === 'Credit' ? <ArrowDownLeft size={22} /> : <ArrowUpRight size={22} />}
                 </div>
                 <div className="flex-1">
-                  <p className="font-black text-[12px] text-slate-800 uppercase">{t.description}</p>
-                  <p className="text-[9px] text-slate-400 font-bold uppercase">{t.date} • {t.vehicleNumber}</p>
+                  <p className="font-black text-xs text-slate-800 uppercase tracking-tight">{t.description}</p>
+                  <p className="text-[9px] text-slate-400 font-black uppercase tracking-widest">{t.date} • {t.vehicleNumber}</p>
                 </div>
                 <div className="text-right">
-                  <p className={`font-black text-[13px] ${t.type === 'Credit' ? 'text-emerald-600' : 'text-slate-900'}`}>
+                  <p className={`font-black text-base ${t.type === 'Credit' ? 'text-red-600' : 'text-blue-900'}`}>
                     {t.type === 'Credit' ? '+' : '-'}₹{t.amount.toFixed(2)}
                   </p>
                 </div>
